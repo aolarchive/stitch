@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="Cart" type="com.aol.one.patch.examples.persistence.model.Cart"/>
+        <typeAlias alias="Product" type="com.aol.one.patch.examples.persistence.model.Product"/>
+        <typeAlias alias="CartProductInfo" type="com.aol.one.patch.examples.persistence.model.CartProductInfo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+                <property name="url"
+                          value="jdbc:derby:directory:/tmp/test-cart-db.db;create=true;"/>
+                <property name="username" value="me"/>
+                <property name="password" value="me"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="cart-mapper.xml"/>
+        <mapper resource="product-mapper.xml"/>
+        <mapper resource="cart-products-mapper.xml" />
+    </mappers>
+</configuration>

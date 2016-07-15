@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aol.one.patch.examples.persistence.mybatis.CartProductsMapper">
+
+    <update id="createTable">
+        CREATE TABLE APP.CART_PRODUCTS (CART_ID INT NOT NULL,
+                                        PRODUCT_ID INT NOT NULL,
+                                        PRODUCT_COUNT INT NOT NULL,
+                                        CONSTRAINT CP_FK1 FOREIGN KEY (CART_ID) REFERENCES APP.CARTS (ID),
+                                        CONSTRAINT CP_FK2 FOREIGN KEY (PRODUCT_ID) REFERENCES APP.PRODUCTS (ID),
+                                        UNIQUE (CART_ID, PRODUCT_ID)
+                                        )
+    </update>
+
+    <select id="getCartProducts" parameterType="int" resultType="CartProductInfo">
+        select CART_ID as cartId, PRODUCT_ID as productId, PRODUCT_COUNT as count
+         from APP.CART_PRODUCTS
+         where CART_ID = #{cartId}
+    </select>
+
+    <update id="deleteCartProduct" parameterType="CartProductInfo">
+        delete from APP.CART_PRODUCTS
+        where CART_ID = #{cartId}
+        and PRODUCT_ID = #{productId}
+    </update>
+
+    <update id="addCartProduct" parameterType="CartProductInfo">
+        insert into APP.CART_PRODUCTS (CART_ID, PRODUCT_ID, PRODUCT_COUNT) VALUES (#{cartId}, #{productId}, #{count})
+    </update>
+
+    <update id="replaceCartProduct" parameterType="CartProductInfo">
+        update APP.CART_PRODUCTS
+                SET PRODUCT_COUNT = #{count}
+        WHERE CART_ID = #{cartId}
+        AND PRODUCT_ID = #{productId}
+    </update>
+
+</mapper>

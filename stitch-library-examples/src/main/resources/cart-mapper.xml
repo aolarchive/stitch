@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aol.one.patch.examples.persistence.mybatis.CartMapper">
+
+    <select id="selectCart" parameterType="int" resultType="Cart">
+        select ID, NAME from APP.CARTS where
+        id = #{id}
+    </select>
+
+    <select id="selectAllCarts" resultType="Cart">
+        select ID, NAME from APP.CARTS
+    </select>
+
+    <update id="createTable">
+        CREATE TABLE APP.CARTS (ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), NAME VARCHAR(255))
+    </update>
+
+    <update id='saveCart' parameterType='Cart'>
+        UPDATE APP.CARTS
+        SET
+        NAME= #{name}
+        WHERE ID = #{id}
+    </update>
+
+    <insert id='createCart' useGeneratedKeys="true" keyProperty="id" parameterType="Cart">
+        INSERT INTO APP.CARTS (NAME)
+        VALUES
+        (#{name})
+    </insert>
+
+</mapper>

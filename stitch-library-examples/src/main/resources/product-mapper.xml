@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aol.one.patch.examples.persistence.mybatis.ProductMapper">
+
+    <select id="selectProduct" parameterType="int" resultType="Product">
+        select ID, NAME from APP.PRODUCTS where
+        id = #{id}
+    </select>
+
+    <select id="selectAllProducts" resultType="Product">
+        select ID, NAME from APP.PRODUCTS
+    </select>
+
+    <update id="createTable">
+        CREATE TABLE APP.PRODUCTS (ID INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), NAME VARCHAR(255))
+    </update>
+
+    <update id='saveProduct' parameterType='Product'>
+        UPDATE APP.PRODUCTS
+        SET
+        NAME= #{name}
+        WHERE ID = #{id}
+    </update>
+
+    <insert id='createProduct' useGeneratedKeys="true" keyProperty="id" parameterType="Product">
+        INSERT INTO APP.PRODUCTS (NAME)
+        VALUES
+        (#{name})
+    </insert>
+
+</mapper>
