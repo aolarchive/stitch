@@ -23,12 +23,13 @@ $ rm -rf /tmp/test-cart-db.db
 
 To run this example, use the following command in Terminal 1.
 
+<pre>
 ~/stitch $ mvn clean package
 ~/stitch $ cd stitch-library-examples/target
 
-Replace <version> in the command below with version number
-~/stitch $ java -jar stitch-library-examples-<version>-war-exec.jar
-
+Replace &lt;version&gt; in the command below with version number
+~/stitch $ java -jar stitch-library-examples-&lt;version&gt;-war-exec.jar
+</pre>
 
 Tomcat7 will start up and load up the Shopping Cart App creating db in /tmp/test-cart-db.db with test data (assuming initialization for new db)
 

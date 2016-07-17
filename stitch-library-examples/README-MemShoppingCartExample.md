@@ -18,11 +18,12 @@ The following PATCH operations will be supported
 
 To run the example, use the following commands in Terminal 1.
 
-~/stitch $ mvn clean package
-~/stitch $ cd stitch-library-examples/target
-
-Replace <version> in the command below with version number
-~/stitch $ java -jar stitch-library-examples-<version>-war-exec.jar
+<pre>
+~/stitch $ mvn clean package  
+~/stitch $ cd stitch-library-examples/target  
+Replace &lt;version&gt; in the command below with version number  
+~/stitch $ java -jar stitch-library-examples-&lt;version&gt;-war-exec.jar  
+</pre>
 
 Tomcat7 will start up and load up the Shopping Cart App
 
