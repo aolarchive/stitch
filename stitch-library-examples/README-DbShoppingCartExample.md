@@ -19,13 +19,18 @@ To clean up a previously initialized db, run the following cmd in Terminal 1.
 
 $ rm -rf /tmp/test-cart-db.db
 
-(Of course, no need to delete the db if you'd like to reuse db from previuos runs)
+(Of course, no need to delete the db if you'd like to reuse db from previous runs)
 
 To run this example, use the following command in Terminal 1.
 
-$ mvn clean package tomcat7:run
+~/stitch $ mvn clean package
+~/stitch $ cd stitch-library-examples/target
 
-Tomcat7 will start up and load up the Shopping Cart App creating db in /tmp/test-cart-db.db with test data (assuming initiazation for new db)
+Replace <version> in the command below with version number
+~/stitch $ java -jar stitch-library-examples-<version>-war-exec.jar
+
+
+Tomcat7 will start up and load up the Shopping Cart App creating db in /tmp/test-cart-db.db with test data (assuming initialization for new db)
 
 Test data include, Cart #1, Two products #1 and #2, and two counts of Product #1 placed in Cart #1.
 
@@ -102,3 +107,7 @@ $ curl -v 'http://localhost:8080/cart-db/carts/' -H 'content-type: application/j
 To add a new product:
 
 $ curl -v 'http://localhost:8080/cart-db/products/' -H 'content-type: application/json' -X POST -d '{"name":"new product"}'
+
+---
+
+After running this example, switch to the first console and hit Ctrl+c to stop the Tomcat server.

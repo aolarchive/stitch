@@ -46,17 +46,27 @@
 
   <build>
 
-    <resources>
-      <resource>
-        <directory>${project.basedir}</directory>
-        <targetPath>META-INF</targetPath>
-        <includes>
-          <include>LICENSE.TXT</include>
-        </includes>
-      </resource>
-    </resources>
-
     <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>false</overWriteSnapshots>
+              <overWriteIfNewer>true</overWriteIfNewer>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -79,7 +89,6 @@
           </execution>
         </executions>
       </plugin>
-
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -123,10 +132,19 @@
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <path>/</path>
-        </configuration>
+        <version>2.3-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <id>tomcat-run</id>
+            <goals>
+              <goal>exec-war-only</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <path>/</path>
+            </configuration>
+          </execution>
+        </executions>
         <dependencies>
           <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -237,23 +255,6 @@
 
     </plugins>
   </build>
-
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>central</id>
-      <name>maven-onevideo-us-west-1</name>
-      <url>https://artifactory.us-west-1.aws.ao.com/artifactory/maven-onevideo-us-west-1</url>
-    </repository>
-    <repository>
-      <snapshots/>
-      <id>snapshots</id>
-      <name>maven_snapshots-onevideo-us-west-1</name>
-      <url>https://artifactory.us-west-1.aws.aol\.com/artifactory/maven_snapshots-onevideo-us-west-1</url>
-    </repository>
-  </repositories>
 
   <dependencies>
 

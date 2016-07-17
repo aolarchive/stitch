@@ -16,9 +16,13 @@ The following PATCH operations will be supported
 * op="replace" path="/products/100" value={"count": 10}
 * op="remove"  path="/products/100"
 
-To run the example, use the following command in Terminal 1.
+To run the example, use the following commands in Terminal 1.
 
-$ mvn clean package tomcat7:run
+~/stitch $ mvn clean package
+~/stitch $ cd stitch-library-examples/target
+
+Replace <version> in the command below with version number
+~/stitch $ java -jar stitch-library-examples-<version>-war-exec.jar
 
 Tomcat7 will start up and load up the Shopping Cart App
 
@@ -42,5 +46,5 @@ Cart after patch op: REMOVE; path: "/products/100" : Cart[id=100,products=Produc
 -------------------
 </pre>
 
-After running this example, switch to the first console and hit Ctrl+c to stop the Jetty server.
+After running this example, switch to the first console and hit Ctrl+c to stop the Tomcat server.
 

@@ -85,4 +85,5 @@ References
 ----------
 
 [1] IETF JSON Patch - https://tools.ietf.org/html/draft-ietf-appsawg-json-patch-10
+
 [2] IETF JSON Pointer - https://tools.ietf.org/html/draft-ietf-appsawg-json-pointer-07

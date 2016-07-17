@@ -6,7 +6,9 @@ It might help if you browse through the code of class com.aol.one.patch.examples
 
 To run, use:
 
-$ mvn --quiet clean compile exec:java -Dexec.mainClass="com.aol.one.patch.examples.library.LibraryUsageExample"
+~/stitch $ mvn clean package
+~/stitch $ cd stitch-library-examples/target
+~/stitch $ java -cp classes:lib/* com.aol.one.patch.examples.library.LibraryUsageExample
 
 You should see output similar to:
 
