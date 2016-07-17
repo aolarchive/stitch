@@ -5,9 +5,9 @@ This library helps implement HTTP PATCH method on Web Resources exposed by Restf
 
 Introduction to PATCH
 ---------------------
-Complex resources consist of multiple independent information "bags". Sending the entire resource every time with PUT request may become prohibitive (ex. due bandwidth costs in case of mobile)
+Complex resources consist of multiple independent/interdependent sub-resources. Sending the entire resource every time with PUT request may become prohibitive (mobile)
 
-To support the Api client in resource update, one option is to surface these independent bags as sub resources (with their own GET/PUT methods).  Of course, now the service ends up with multiple APIs. If the sub resources are not truly independent, this option is not feasible.
+To support the Api client in resource update, one option is to develop APIs that surface these sub resources with their own GET/PUT methods.  Of course, now the service ends up with multiple APIs. If the sub resources are not truly independent, this option is not feasible.
 
 HTTP has introduced a new method PATCH, that will allow incremental update of resources
 
