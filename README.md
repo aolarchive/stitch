@@ -1,15 +1,13 @@
 Stitch Library
 =============
 
-This library helps in implementing HTTP PATCH method on Web Resources exposed by Restful APIs.
+This library helps implement HTTP PATCH method on Web Resources exposed by Restful APIs.
 
 Introduction to PATCH
 ---------------------
-Api clients require partial updates to Resources managed by APIs.  Many a times, these resources consist of multiple unrelated information "bags".
-One option is to surface these individually managed bags as sub resources.
-Even then, this sub resource might be large enough such that API users encounter the following situations
-sending the entire "bag" every time with PUT request may become prohibitive (ex. due bandwidth costs in case of mobile)
-ensuring updates made after GET are not lost (by including versioning at the resource level)
+Complex resources consist of multiple independent information "bags". Sending the entire resource every time with PUT request may become prohibitive (ex. due bandwidth costs in case of mobile)
+
+To support the Api client in resource update, one option is to surface these independent bags as sub resources (with their own GET/PUT methods).  Of course, now the service ends up with multiple APIs. If the sub resources are not truly independent, this option is not feasible.
 
 HTTP has introduced a new method PATCH, that will allow incremental update of resources
 

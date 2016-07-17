@@ -1,7 +1,7 @@
 README-MemShoppingCartExample
 =============================
 
-Jersey Application using Java Patch Library Example
+Jersey Application using Stitch Library Example
 ---------------------------------------------------
 
 This example implements a shopping cart resource allowing users to add, remove and update products in shopping cart in memory. Server restart will remove all carts in memory.
