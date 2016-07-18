@@ -78,6 +78,7 @@ Here is a sample usage.
 
 Multiple examples are provided the stitch-library-examples module. See [Examples README.md](./stitch-library-examples/README.md).
 
+To get started with the library, see [Library README.md](./stitch-library/README.md)
 
 References
 ----------
