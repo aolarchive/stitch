@@ -7,7 +7,7 @@ package com.aol.one.patch;
 import com.fasterxml.jackson.databind.JsonNode;
 
 /**
- * Patchers could make use of objects implementing Patchable during patching
+ * Patchers could make use of objects implementing Patchable during patching.
  *
  */
 public interface Patchable {
@@ -17,7 +17,9 @@ public interface Patchable {
 
   // called on patchable based on operation
   void addValue(String key, JsonNode value) throws PatchableException;
+  
   void replaceValue(String key, JsonNode value) throws PatchableException;
+  
   void removeValue(String key) throws PatchableException;
 
 }

@@ -5,11 +5,8 @@
 package com.aol.one.patch;
 
 /**
- *
  *         The intent here is to help the library user to figure out the source of the error.
  */
-
-
 public class ErrorCodes {
 
   public static final int ERR_UNKNOWN = -1;
@@ -31,6 +28,7 @@ public class ErrorCodes {
   public static final int ERR_INVALID_DESCENDANT_OBJ = Integer.valueOf(50005).intValue();
   public static final int ERR_INVALID_PARENT_PATH_OBJ = Integer.valueOf(50006).intValue();
 
-  // convention: 60000 series are programming errors in this library. Mostly used by PatchRuntimeException
+  // convention: 60000 series are programming errors in this library. Mostly used by 
+  //             PatchRuntimeException
   public static final int ERR_INVALID_PATH_TOKENS_OBJ = Integer.valueOf(60001).intValue();
 }

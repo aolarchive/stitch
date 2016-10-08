@@ -1,325 +1,339 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-~ /* See the file "LICENSE.TXT" for the full license governing this code. */
--->
+<!-- ~ /* See the file "LICENSE.TXT" for the full license governing this 
+	code. */ -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <artifactId>stitch-library-examples</artifactId>
-  <packaging>war</packaging>
-  <version>0.4.0</version>
-  <name>${project.groupId}:${project.artifactId} (DO NOT USE IN PRODUCTION)</name>
+	<artifactId>stitch-library-examples</artifactId>
+	<packaging>war</packaging>
+	<name>${project.groupId}:${project.artifactId} (DO NOT USE IN PRODUCTION)</name>
 
-  <licenses>
-    <license>
-      <name>AOL flavor of BSD 3-Clause License</name>
-      <url>https://opensource.org/licenses/BSD-3-Clause</url>
-    </license>
-  </licenses>
+	<licenses>
+		<license>
+			<name>AOL flavor of BSD 3-Clause License</name>
+			<url>https://opensource.org/licenses/BSD-3-Clause</url>
+		</license>
+	</licenses>
 
-  <developers>
-    <developer>
-      <name>Madhu Ramanna</name>
-      <email>madhu.ramanna@advertising.com</email>
-    </developer>
-  </developers>
+	<developers>
+		<developer>
+			<name>Eliot Pearson</name>
+			<email>eliot.pearson@teamaol.com</email>
+		</developer>
+		<developer>
+			<name>Madhu Ramanna</name>
+		</developer>
+	</developers>
 
-  <parent>
-    <groupId>com.aol.one</groupId>
-    <artifactId>stitch-parent</artifactId>
-    <version>0.4.0</version>
-    <relativePath>..</relativePath>
-  </parent>
-  
-  <properties>
-    <jackson.version>2.7.1</jackson.version>
-    <jersey.version>2.22</jersey.version>
-    <mybatis.version>3.2.5</mybatis.version>
-    <derby.version>10.11.1.1</derby.version>
-    <junit.version>4.12</junit.version>
-    <guice.version>3.0</guice.version>
-    <tomcat.embed.version>7.0.68</tomcat.embed.version>
-  </properties>
+	<parent>
+		<groupId>com.aol.one</groupId>
+		<artifactId>stitch-parent</artifactId>
+		<version>0.5.0</version>
+		<relativePath>..</relativePath>
+	</parent>
 
-  <build>
+	<properties>
+		<jackson.version>2.7.1</jackson.version>
+		<jersey.version>2.22</jersey.version>
+		<mybatis.version>3.2.5</mybatis.version>
+		<derby.version>10.11.1.1</derby.version>
+		<junit.version>4.12</junit.version>
+		<guice.version>3.0</guice.version>
+		<tomcat.embed.version>7.0.68</tomcat.embed.version>
+	</properties>
 
-    <plugins>
+	<build>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.directory}/lib</outputDirectory>
-              <overWriteReleases>false</overWriteReleases>
-              <overWriteSnapshots>false</overWriteSnapshots>
-              <overWriteIfNewer>true</overWriteIfNewer>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+		<plugins>
 
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>properties-maven-plugin</artifactId>
-        <version>1.0-alpha-2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>set-system-properties</goal>
-            </goals>
-            <configuration>
-              <properties>
-                <!-- Location of logback config -->
-                <property>
-                  <name>logback.configurationFile</name>
-                  <value>src/main/resources/logback.xml</value>
-                </property>
-              </properties>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>${maven.compiler.version}</version>
-        <executions>
-          <execution>
-            <id>default-compile</id>
-            <configuration>
-              <showDeprecation>true</showDeprecation>
-              <showWarnings>true</showWarnings>
-              <compilerArguments>
-                <source>${maven.compiler.target}</source>
-                <target>${maven.compiler.source}</target>
-              </compilerArguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>default-testCompile</id>
-            <configuration>
-              <showDeprecation>true</showDeprecation>
-              <showWarnings>true</showWarnings>
-              <compilerArguments>
-                <source>${maven.compiler.testTarget}</source>
-                <target>${maven.compiler.testSource}</target>
-              </compilerArguments>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0-alpha-2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>set-system-properties</goal>
+						</goals>
+						<configuration>
+							<properties>
+								<!-- Location of logback config -->
+								<property>
+									<name>logback.configurationFile</name>
+									<value>src/main/resources/logback.xml</value>
+								</property>
+							</properties>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<configuration>
+							<showDeprecation>true</showDeprecation>
+							<showWarnings>true</showWarnings>
+							<compilerArguments>
+								<source>${maven.compiler.target}</source>
+								<target>${maven.compiler.source}</target>
+							</compilerArguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>default-testCompile</id>
+						<configuration>
+							<showDeprecation>true</showDeprecation>
+							<showWarnings>true</showWarnings>
+							<compilerArguments>
+								<source>${maven.compiler.testTarget}</source>
+								<target>${maven.compiler.testSource}</target>
+							</compilerArguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.3-SNAPSHOT</version>
-        <executions>
-          <execution>
-            <id>tomcat-run</id>
-            <goals>
-              <goal>exec-war-only</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <path>/</path>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-core</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-util</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-coyote</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-api</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.3-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<id>tomcat-run</id>
+						<goals>
+							<goal>exec-war-only</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<path>/</path>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.tomcat.embed</groupId>
+						<artifactId>tomcat-embed-core</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-util</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-coyote</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-api</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-dbcp</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-jdbc</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-dbcp</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-servlet-api</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jasper</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-jsp-api</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jasper-el</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-jasper</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-el-api</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-jasper-el</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-el-api</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-tribes</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-catalina</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina-ha</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-tribes</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-annotations-api</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-catalina-ha</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-juli</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-annotations-api</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-          <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-logging-juli</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-logging-log4j</artifactId>
-            <version>${tomcat.embed.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-juli</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
 
-
-    </plugins>
-  </build>
-
-  <dependencies>
-
-    <dependency>
-      <groupId>com.aol.one</groupId>
-      <artifactId>stitch-library</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.jaxrs</groupId>
-      <artifactId>jackson-jaxrs-base</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.jaxrs</groupId>
-      <artifactId>jackson-jaxrs-json-provider</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.containers</groupId>
-      <!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core"  -->
-      <artifactId>jersey-container-servlet</artifactId>
-      <version>${jersey.version}</version>
-    </dependency>
+					<dependency>
+						<groupId>org.apache.tomcat.embed</groupId>
+						<artifactId>tomcat-embed-logging-juli</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.tomcat.embed</groupId>
+						<artifactId>tomcat-embed-logging-log4j</artifactId>
+						<version>${tomcat.embed.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 
 
-    <dependency>
-      <groupId>org.glassfish.jersey.media</groupId>
-      <artifactId>jersey-media-json-jackson</artifactId>
-      <version>${jersey.version}</version>
-    </dependency>
+		</plugins>
+	</build>
 
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>${mybatis.version}</version>
-    </dependency>
+	<dependencies>
 
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <version>${derby.version}</version>
-    </dependency>
+		<dependency>
+			<groupId>com.aol.one</groupId>
+			<artifactId>stitch-library</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <version>${guice.version}</version>
-    </dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
-  </dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-base</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core" -->
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>${derby.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>${guice.version}</version>
+		</dependency>
+
+	</dependencies>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>apache.snapshots</id>
+			<name>Apache Snapshots</name>
+			<url>https://repository.apache.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

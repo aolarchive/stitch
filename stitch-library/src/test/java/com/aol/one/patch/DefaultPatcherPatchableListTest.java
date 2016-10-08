@@ -8,14 +8,15 @@
 
 package com.aol.one.patch;
 
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+
 import com.aol.one.patch.testobj.PatchableList;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
 
 /**
  * @author Madhu Ramanna <madhu.ramanna@advertising.com> dt 2/1/16.

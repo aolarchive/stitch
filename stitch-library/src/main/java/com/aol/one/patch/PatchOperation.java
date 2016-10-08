@@ -1,5 +1,5 @@
 /*
- *  See the file "LICENSE.TXT" for the full license governing this code.
+ * See the file "LICENSE.TXT" for the full license governing this code.
  */
 
 package com.aol.one.patch;
@@ -8,14 +8,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
- * This interface will be used by Patcher
+ * This interface will be used by Patcher.
  */
-@JsonDeserialize(as=DefaultPatchOperation.class)
+@JsonDeserialize(as = DefaultPatchOperation.class)
 public interface PatchOperation {
 
-    String getPath();
+  String getPath();
 
-    Operation getOperation();
+  Operation getOperation();
 
-    JsonNode getValue();
+  JsonNode getValue();
 }

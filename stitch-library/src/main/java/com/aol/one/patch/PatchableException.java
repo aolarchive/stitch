@@ -5,8 +5,8 @@
 package com.aol.one.patch;
 
 /**
- *   This exception is reserved for use in Patchable interface. Patchable implementations can extend this class
- *   for further use
+ *   This exception is reserved for use in Patchable interface. Patchable implementations can 
+ *   extend this class for further use
  */
 
 public class PatchableException extends PatchException {

@@ -20,8 +20,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Default patcher implementation that does patching of the object with the specified patch operations
- * list.
+ * Default patcher implementation that does patching of the object with the specified patch 
+ * operations list.
  */
 public class DefaultPatcher implements Patcher {
 
@@ -47,11 +47,12 @@ public class DefaultPatcher implements Patcher {
   /**
    * This implementation assumes that caller has validated patchOperationList.
    *
-   * @throws RuntimeException on what are deemed programming errors related to this Patcher. PatchExceptions
-   *                          otherwise
+   * @throws RuntimeException on what are deemed programming errors related to this Patcher. 
+   *         PatchExceptions otherwise
    */
   @Override
-  public void patch(Object objectToPatch, List<PatchOperation> patchOperationList) throws PatchException {
+  public void patch(Object objectToPatch, List<PatchOperation> patchOperationList) 
+      throws PatchException {
 
     if (objectToPatch == null) {
       throw new PatchException(ErrorCodes.ERR_NULL_PATCHABLE);
@@ -61,14 +62,12 @@ public class DefaultPatcher implements Patcher {
       throw new PatchException(ErrorCodes.ERR_NO_PATCH_OP);
     }
 
-    PatchOperation t = null;
     try {
       for (PatchOperation patchOperation : patchOperationList) {
         if (patchOperation == null) {
           continue;
         }
 
-        t = patchOperation;
         Operation operation = patchOperation.getOperation();
         switch (operation) {
           case ADD:
@@ -98,9 +97,10 @@ public class DefaultPatcher implements Patcher {
 
     PathTokens pathTokens = operation.getPathTokens();
     // navigate until we reach leaf token (i.e exclude leaf token)
-    Object result = getDescendantObject(objectToPatch, pathTokens, pathTokens.getLastTokenParentIndex());
+    Object result = getDescendantObject(objectToPatch, pathTokens, 
+        pathTokens.getLastTokenParentIndex());
     if (result == null) {
-        throw new PatchException(ErrorCodes.ERR_INVALID_DESCENDANT_OBJ);
+      throw new PatchException(ErrorCodes.ERR_INVALID_DESCENDANT_OBJ);
     }
     invokeAddMethod(result, pathTokens.getLastToken(), operation.getValue());
   }
@@ -112,7 +112,8 @@ public class DefaultPatcher implements Patcher {
 
     PathTokens pathTokens = operation.getPathTokens();
     // navigate until we reach leaf token (i.e exclude leaf token)
-    Object result = getDescendantObject(objectToPatch, pathTokens, pathTokens.getLastTokenParentIndex());
+    Object result = getDescendantObject(objectToPatch, pathTokens, 
+        pathTokens.getLastTokenParentIndex());
     if (result == null) {
       throw new PatchException(ErrorCodes.ERR_INVALID_DESCENDANT_OBJ);
     }
@@ -126,7 +127,8 @@ public class DefaultPatcher implements Patcher {
 
     PathTokens pathTokens = operation.getPathTokens();
     // navigate until we reach leaf token (i.e exclude leaf token)
-    Object result = getDescendantObject(objectToPatch, pathTokens, pathTokens.getLastTokenParentIndex());
+    Object result = getDescendantObject(objectToPatch, pathTokens, 
+        pathTokens.getLastTokenParentIndex());
     if (result == null) {
       throw new PatchException(ErrorCodes.ERR_INVALID_DESCENDANT_OBJ);
     }
@@ -136,15 +138,17 @@ public class DefaultPatcher implements Patcher {
   /**
    * object corresponding to path key at descendantIndex
    */
-  private Object getDescendantObject(Object objectToPatch, PathTokens pathTokens, int descendantIndex)
-      throws PatchException, IllegalAccessException, InvocationTargetException {
+  private Object getDescendantObject(Object objectToPatch, PathTokens pathTokens, 
+      int descendantIndex) throws PatchException, IllegalAccessException, 
+      InvocationTargetException {
 
     if (pathTokens == null || pathTokens.isEmpty()) {
       throw new PatchRuntimeException(ErrorCodes.ERR_INVALID_PATH_TOKENS_OBJ);
     }
 
     if (descendantIndex < -1 || descendantIndex >= pathTokens.size()) {
-      throw new PatchRuntimeException(ErrorCodes.ERR_INVALID_DESCENDANT_INDEX, Integer.toString(descendantIndex));
+      throw new PatchRuntimeException(ErrorCodes.ERR_INVALID_DESCENDANT_INDEX, 
+          Integer.toString(descendantIndex));
     }
 
     if (descendantIndex == -1) {
@@ -161,7 +165,8 @@ public class DefaultPatcher implements Patcher {
 
       if (parentObject == null) {
         throw new PatchException(ErrorCodes.ERR_INVALID_PARENT_PATH_OBJ,
-            "unable to retrieve descendant object from null parent while processing token: " + token);
+            "unable to retrieve descendant object from null parent while processing token: " 
+            + token);
       }
 
       descendantObject = null;
@@ -422,7 +427,7 @@ public class DefaultPatcher implements Patcher {
       if (methodData.hasParameters()) {
         method =
             MethodUtils.getAccessibleMethod(clazz, methodData.methodName,
-                                            methodData.getParameterTypes().toArray(new Class<?>[0]));
+                methodData.getParameterTypes().toArray(new Class<?>[0]));
         if (method != null && methodData.hasArguments()) {
           return method.invoke(object, methodData.arguments.toArray());
         }
@@ -436,7 +441,8 @@ public class DefaultPatcher implements Patcher {
       triedMethodNames.add(methodData.methodName);
     }
 
-    String exMsg = getExMsgForMethodsNotFound(clazz, triedMethodNames.toArray(new String[triedMethodNames.size()]));
+    String exMsg = getExMsgForMethodsNotFound(clazz, 
+        triedMethodNames.toArray(new String[triedMethodNames.size()]));
     throw new PatchException(ErrorCodes.ERR_METHOD_TO_PATCH_NOT_FOUND, exMsg);
   }
 
@@ -453,7 +459,7 @@ public class DefaultPatcher implements Patcher {
         int size = methodData.getParameterTypes().size();
         method =
             MethodUtils.getAccessibleMethod(clazz, methodData.methodName,
-                                            methodData.getParameterTypes().toArray(new Class<?>[size]));
+                methodData.getParameterTypes().toArray(new Class<?>[size]));
         if (method != null && methodData.hasArguments()) {
           method.invoke(object, methodData.getArguments().toArray());
           return;
@@ -470,7 +476,7 @@ public class DefaultPatcher implements Patcher {
     }
 
     throw new PatchException(ErrorCodes.ERR_METHOD_TO_PATCH_NOT_FOUND,
-                             getExMsgForMethodsNotFound(clazz, triedMethods.toArray(new String[triedMethods.size()])));
+        getExMsgForMethodsNotFound(clazz, triedMethods.toArray(new String[triedMethods.size()])));
 
   }
 
@@ -512,7 +518,7 @@ public class DefaultPatcher implements Patcher {
     }
 
     /**
-     * This is to be used for methods without any parameters
+     * This is to be used for methods without any parameters.
      */
     public MethodData(String methodName) {
       this.methodName = methodName;

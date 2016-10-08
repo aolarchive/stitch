@@ -8,15 +8,15 @@
 
 package com.aol.one.patch;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import com.aol.one.patch.testobj.PatchableMap;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * This

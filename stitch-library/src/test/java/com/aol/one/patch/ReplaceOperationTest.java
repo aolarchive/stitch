@@ -8,18 +8,16 @@
 
 package com.aol.one.patch;
 
-import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertTrue;
+
+import com.fasterxml.jackson.databind.node.TextNode;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.aol.one.patch.Operation;
-import com.aol.one.patch.ReplaceOperation;
-import com.fasterxml.jackson.databind.node.TextNode;
-
-import static org.junit.Assert.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import java.util.List;
 
 public class ReplaceOperationTest {
 

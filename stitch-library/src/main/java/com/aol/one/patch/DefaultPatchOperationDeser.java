@@ -14,7 +14,8 @@ import java.io.IOException;
 public class DefaultPatchOperationDeser extends JsonDeserializer<DefaultPatchOperation> {
 
   @Override
-  public DefaultPatchOperation deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+  public DefaultPatchOperation deserialize(JsonParser jsonParser, 
+      DeserializationContext deserializationContext) throws IOException {
 
     JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 

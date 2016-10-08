@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface Patcher {
   void patch(Object objectToPatch, PatchOperation patchOp) throws PatchException;
+  
   void patch(Object objectToPatch, List<PatchOperation> patchOps) throws PatchException;
 }

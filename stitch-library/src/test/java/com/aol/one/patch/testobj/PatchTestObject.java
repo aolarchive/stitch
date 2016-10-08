@@ -4,14 +4,14 @@
 
 package com.aol.one.patch.testobj;
 
+import static org.mockito.Mockito.spy;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static org.mockito.Mockito.spy;
 
 public class PatchTestObject {
 

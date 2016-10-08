@@ -6,6 +6,10 @@ package com.aol.one.patch.testobj;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+/**
+ * @author elpearson16
+ *
+ */
 public class PatchChildTestObject {
 
   private String strField;
@@ -43,6 +47,10 @@ public class PatchChildTestObject {
     this.strField = newValue.asText();
   }
 
+  /**
+   * @param field
+   * @param newValueNode
+   */
   public void replaceValue(String field, JsonNode newValueNode) {
 
     if (field.equals("doubleField")) {

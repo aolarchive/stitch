@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.aol.one</groupId>
   <artifactId>stitch-parent</artifactId>
-  <version>0.4.0</version>
+  <version>0.5.0</version>
   <packaging>pom</packaging>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Stitch is a Java library that helps implement HTTP Patch</description>
@@ -20,8 +20,11 @@
 
   <developers>
     <developer>
+      <name>Eliot Pearson</name>
+      <email>eliot.pearson@teamaol.com</email>
+    </developer>
+    <developer>
       <name>Madhu Ramanna</name>
-      <email>madhu.ramanna@advertising.com</email>
     </developer>
   </developers>
 
@@ -49,7 +52,6 @@
   </modules>
   
   <properties>
-
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <apache.lang3.version>3.4</apache.lang3.version>

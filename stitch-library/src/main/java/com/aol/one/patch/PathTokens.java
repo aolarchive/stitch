@@ -4,13 +4,13 @@
 
 package com.aol.one.patch;
 
-import org.apache.commons.lang3.StringUtils;
+import static com.aol.one.patch.ErrorCodes.ERR_INVALID_PATH;
+import static com.aol.one.patch.ErrorCodes.ERR_UNKNOWN;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-import static com.aol.one.patch.ErrorCodes.ERR_INVALID_PATH;
-import static com.aol.one.patch.ErrorCodes.ERR_UNKNOWN;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Madhu Ramanna &lt;madhu.ramanna@advertising.com&lt;
@@ -92,7 +92,8 @@ class PathTokens extends ArrayList<String> {
 
   public int getLastTokenIndex() {
     if (this.isEmpty()) {
-      throw new PatchRuntimeException(ERR_UNKNOWN, "cannot get last token index when token list is empty");
+      throw new PatchRuntimeException(ERR_UNKNOWN, 
+          "cannot get last token index when token list is empty");
     }
     return size() - 1;
   }

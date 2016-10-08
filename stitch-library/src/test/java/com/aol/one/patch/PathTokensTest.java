@@ -8,13 +8,14 @@
 
 package com.aol.one.patch;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+
 import com.aol.one.patch.PathTokens;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 /**
  * @author Madhu Ramanna <madhu.ramanna@advertising.com> dt 2/1/16.

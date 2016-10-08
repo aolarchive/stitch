@@ -1,12 +1,22 @@
 /*
- *  See the file "LICENSE.TXT" for the full license governing this code.
+ * See the file "LICENSE.TXT" for the full license governing this code.
  */
 
 /*
- *  See the file "LICENSE.TXT" for the full license governing this code.
+ * See the file "LICENSE.TXT" for the full license governing this code.
  */
 
 package com.aol.one.patch;
+
+import static junit.framework.TestCase.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.aol.one.patch.testobj.Level1;
 import com.aol.one.patch.testobj.Level2;
@@ -26,16 +36,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static junit.framework.TestCase.assertTrue;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class DefaultPatcherTest {
 
@@ -138,26 +138,26 @@ public class DefaultPatcherTest {
   public void testAddToMap() throws PatchException {
     List<PatchOperation> operations = new ArrayList<>();
 
-    DoubleNode d = new DoubleNode(10.1d);
-    operations.add(new AddOperation("/someIdMap/0", d));
+    DoubleNode displayNode = new DoubleNode(10.1d);
+    operations.add(new AddOperation("/someIdMap/0", displayNode));
 
     patcher.patch(testObject, operations);
 
     // verify
-    verify(testObject.getSomeIdMap()).put("0", d);
+    verify(testObject.getSomeIdMap()).put("0", displayNode);
   }
 
   @Test
   public void testAddToList() throws PatchException {
     List<PatchOperation> operations = new ArrayList<>();
 
-    DoubleNode d = new DoubleNode(10.1d);
-    operations.add(new AddOperation("/someIdList/0", d));
+    DoubleNode displayNode = new DoubleNode(10.1d);
+    operations.add(new AddOperation("/someIdList/0", displayNode));
 
     patcher.patch(testObject, operations);
 
     // verify
-    verify(testObject.getSomeIdList()).add(0, d);
+    verify(testObject.getSomeIdList()).add(0, displayNode);
   }
 
   @Test
@@ -287,7 +287,8 @@ public class DefaultPatcherTest {
     l1.setLevel2(l2list);
 
     String string = "blahString";
-    PatchOperation operation = new AddOperation("/level2/0/level3/someString", new TextNode(string));
+    PatchOperation operation = new AddOperation("/level2/0/level3/someString", 
+        new TextNode(string));
 
     // verify precondition
     assertTrue(l3.getSomeString() == null);
@@ -296,6 +297,6 @@ public class DefaultPatcherTest {
     patcher.patch(l1, operation);
 
     assertTrue(l3.getSomeString().equals(string));
- }
+  }
 
 }

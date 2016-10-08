@@ -7,7 +7,6 @@ package com.aol.one.patch;
 import java.util.ArrayList;
 
 /**
- *
  * This class can be used to deserialize a PATCH body input into list of PatchOperation objects
  */
 

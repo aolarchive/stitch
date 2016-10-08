@@ -36,7 +36,8 @@ public abstract class DefaultPatchOperation implements PatchOperation {
     this(op, path, null);
   }
 
-  protected DefaultPatchOperation(final Operation op, final String path, final JsonNode value) throws PatchException {
+  protected DefaultPatchOperation(final Operation op, final String path, final JsonNode value) 
+      throws PatchException {
     this.op = op;
     setValue(value);
     setPath(path);
