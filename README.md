@@ -1,3 +1,5 @@
+** Please Note**: This project is no longer maintained and contains known security vulnerabilities. Use at your own risk!
+
 Stitch Library
 =============
 
